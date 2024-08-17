@@ -1,0 +1,89 @@
+print("========================")
+print("SPACED REPETITION SYSTEM")
+print("========================")
+print(" ")
+
+chapter = input("Enter chapter name: ")
+
+import datetime
+
+while True:
+    
+    date_studied =input("Enter date studied (YYYY-MM-DD): ")
+    try:
+        user_date = datetime.datetime.strptime(date_studied,"%Y-%m-%d")
+        print(user_date.strftime("%a,%d-%m-%Y"))
+    except ValueError:
+        print("error")
+
+    from datetime import timedelta
+
+    first_rep = user_date + timedelta(days=1)
+    print(first_rep.strftime("%a,%d,%b,%Y"))
+
+    second_rep = user_date + timedelta(days=3)
+    print(second_rep.strftime("%a,%d,%b,%Y"))
+
+    third_rep = user_date + timedelta(weeks=1)
+    print(third_rep.strftime("%a,%d,%b,%Y"))
+
+    fourth_rep = user_date + timedelta(weeks=2)
+    print(fourth_rep.strftime("%a,%d,%b,%Y"))
+
+    holiday = ("yes")
+    cuti = input("Is there any upcoming holiday within 1 month of studied period: ")
+    if cuti != holiday:
+        fifth_rep = user_date + timedelta(days=30)
+        print(fifth_rep.strftime("%a,%d,%b,%Y"))
+    else:
+        fifth_rep = input("Enter the upcoming holiday date within 1 month: ")
+        try:
+            user_date2 = datetime.datetime.strptime(fifth_rep,"%Y-%m-%d")
+            print(user_date2.strftime("%a,%d-%m-%Y"))
+        except ValueError:
+            print("error")
+    test_name = input("Enter test name: ")
+    test_date = input("Enter next test date (YYYY-MM-DD): ")
+    try:
+        user_date3 = datetime.datetime.strptime(test_date,"%Y-%m-%d")
+        print(test_name)
+        print(user_date3.strftime("%a,%d-%m-%Y"))
+    except ValueError:
+        print("error")
+
+    sixth_rep = user_date3 - timedelta(days=3)
+    print(sixth_rep.strftime("%a,%d,%b,%Y"))
+
+    final_rep = user_date3 - timedelta(days=1)
+    print(final_rep.strftime("%a,%d,%b,%Y"))
+
+    print(" ")
+    print("SUMMARY")
+    print(chapter)
+    print("Studied chapter on: ",user_date.strftime("%a,%d-%m-%Y"))
+    print("1st review session: ",first_rep.strftime("%a,%d,%b,%Y"))
+    print("2nd review session: ",second_rep.strftime("%a,%d,%b,%Y"))
+    print("3rd review session: ",third_rep.strftime("%a,%d,%b,%Y"))
+    print("4th review session: ",fourth_rep.strftime("%a,%d,%b,%Y"))
+    if cuti != holiday:
+        print("5th review session: ",fifth_rep.strftime("%a,%d,%b,%Y"))
+    else:
+        print("5th review session: ",user_date2.strftime("%a,%d-%m-%Y"))
+    print("Test date is on: ",user_date3.strftime("%a,%d,%b,%Y"))
+    print("6th review session: ",sixth_rep.strftime("%a,%d,%b,%Y"))
+    print("Final review session: ",final_rep.strftime("%a,%d,%b,%Y"))
+
+    print(" ")
+    func_end = ("Quit")
+    respond = str(input("Please enter next chapter name or Quit to end program: "))
+    if respond.upper() == func_end.upper():
+        print(" ")
+        print("Thank you for using the Spaced Repetition System")
+        break
+    else:
+        print(respond)
+    
+
+
+
+
